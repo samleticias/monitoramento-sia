@@ -48,7 +48,7 @@ if __name__ == "__main__":
         "contestação", "derrota", "insuficiente", "insatisfatório"
     ]
 
-    # concatena título + descrição e limpa
+    # descrição da notícia
     df["Texto_Completo"] = (df["Descricao"].fillna("")).apply(limpar_normalizar_texto)
 
     # classifica sentimento
