@@ -49,7 +49,7 @@ if __name__ == "__main__":
     ]
 
     # concatena título + descrição e limpa
-    df["Texto_Completo"] = (df["Titulo"].fillna("") + " " + df["Descricao"].fillna("")).apply(limpar_normalizar_texto)
+    df["Texto_Completo"] = (df["Descricao"].fillna("")).apply(limpar_normalizar_texto)
 
     # classifica sentimento
     df["Sentimento"] = df["Texto_Completo"].apply(
