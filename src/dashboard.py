@@ -13,6 +13,8 @@ st.markdown("---")
 caminho_csv = os.path.join(os.path.dirname(__file__), "..", "data", "noticias_processadas.csv")
 df = pd.read_csv(caminho_csv)
 
+df['Data'] = pd.to_datetime(df['Data'], errors='coerce')
+
 # -----------------------------
 # stopwords personalizadas
 # -----------------------------
