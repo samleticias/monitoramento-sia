@@ -137,7 +137,45 @@ distribuicao_de_palavras_em_noticias(df)
 st.markdown("<br>", unsafe_allow_html=True)
 
 # -----------------------------
-# 5. ética e transparência
+# 5. gráfico de séries temporais por sentimento neutro/positivo
+# -----------------------------
+st.subheader("Evolução de Notícias por Sentimento ao Longo do Tempo")
+
+df_tempo = df.groupby([df['Data'].dt.to_period("M"), 'Sentimento']).size().reset_index(name='Contagem')
+df_tempo['Data'] = df_tempo['Data'].dt.to_timestamp()
+
+fig_time = px.line(
+    df_tempo,
+    x='Data',
+    y='Contagem',
+    color='Sentimento',
+    markers=True,
+    title="Número de Notícias por Sentimento por Mês",
+    color_discrete_map={"Positivo":"green", "Neutro":"gray", "Negativo":"red"}
+)
+st.plotly_chart(fig_time, use_container_width=True)
+
+# -----------------------------
+# 6. distribuição de notícias por mês
+# -----------------------------
+st.subheader("Total de Notícias por Mês")
+
+df_mes = df.groupby(df['Data'].dt.to_period("M")).size().reset_index(name='Total')
+df_mes['Data'] = df_mes['Data'].dt.to_timestamp()
+
+fig_bar = px.bar(
+    df_mes,
+    x='Data',
+    y='Total',
+    title="Quantidade de Notícias Publicadas por Mês",
+    labels={'Total':'Quantidade de Notícias'},
+    color='Total',
+    color_continuous_scale='Blues'
+)
+st.plotly_chart(fig_bar, use_container_width=True)
+
+# -----------------------------
+# 7. ética e transparência
 # -----------------------------
 st.markdown("---")
 st.subheader("Ética e Transparência")
@@ -154,12 +192,14 @@ st.markdown("""
 - **Classificação de sentimentos:** Implementação da lógica de identificação de sentimentos baseada em regras.
 - **Construção de gráficos e tabelas:**
   - Gráfico de pizza da distribuição de sentimentos.
+  - Gráfico de séries temporais por sentimento.
+  - Gráfico de distribuição de notícias por mês.
   - Nuvem de palavras com palavras filtradas.
   - Treemap mostrando palavras mais frequentes em diferentes notícias.
   - Tabela interativa com todos os dados processados.
 """)
 
-st.markdown("**Uso de IA como suporte:**")
+st.markdown("**Uso de IA ChatGPT como suporte:**")
 st.markdown("""
 - Filtragem de stopwords personalizadas: Escolha de palavras irrelevantes para a nuvem de palavras e treemap.
 - Implementação da lógica de contagem de palavras: Quantificação de ocorrência das palavras nas notícias.
