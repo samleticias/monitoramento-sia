@@ -15,7 +15,6 @@ def coletar_noticias(termo_busca, limite=15):
         print("erro ao acessar o feed:", resposta.status_code)
         return None
 
-    # processa o XML
     raiz = ET.fromstring(resposta.content)
     noticias = []
     for item in raiz.findall(".//item")[:limite]:
