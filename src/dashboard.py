@@ -91,7 +91,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 # 3. tabela interativa
 # -----------------------------
 st.subheader("Tabela de Notícias Classificadas")
-st.dataframe(df[["Titulo", "Sentimento", "Link", "Termo", "Texto_Completo"]])
+st.dataframe(df[["Titulo", "Sentimento", "Data", "Link", "Termo", "Texto_Completo"]])
 
 st.markdown("<br>", unsafe_allow_html=True)
 
