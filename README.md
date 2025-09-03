@@ -20,6 +20,15 @@ monitoramento-ia-piaui/
 └── .gitignore
 ```
 
+## Bibliotecas Utilizadas
+
+- **pandas**: Manipulação e análise de dados.
+- **requests**: Coleta de dados via HTTP.
+- **streamlit**: Criação de dashboards interativos.
+- **matplotlib**: Gráficos estáticos 2D.
+- **plotly**: Gráficos interativos.
+- **wordcloud**: Geração de nuvens de palavras.
+
 ## Setup
 
 1. Clonar repositório:
