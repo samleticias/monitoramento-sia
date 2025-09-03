@@ -1,6 +1,8 @@
 # Monitoramento de Notícias sobre IA no Piauí
 
-Este projeto coleta notícias sobre Inteligência Artificial no Piauí, processa o texto para limpeza e análise de sentimento, e exibe visualizações em um dashboard interativo.
+Este projeto demonstra um fluxo de trabalho para acompanhar e interpretar notícias sobre Inteligência Artificial (IA) no estado do Piauí. A aplicação faz a extração de conteúdos do Google News por meio de RSS, executa a limpeza e padronização dos textos, aplica uma avaliação de sentimentos baseada em regras simples e apresenta os resultados em um painel interativo com Streamlit.
+
+A solução é organizada em diferentes scripts Python que atuam de forma sequencial, permitindo coletar, processar e disponibilizar os dados de maneira estruturada para facilitar a análise visual.
 
 ## Estrutura do Projeto
 ```bash
