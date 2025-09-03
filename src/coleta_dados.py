@@ -2,6 +2,7 @@ import requests
 import xml.etree.ElementTree as ET
 import pandas as pd
 import os
+from datetime import datetime
 
 def coletar_noticias(termo_busca, limite=15):
     """
@@ -21,10 +22,18 @@ def coletar_noticias(termo_busca, limite=15):
         titulo = item.find("title").text
         link = item.find("link").text
         descricao = item.find("description").text
-        noticias.append([titulo, link, descricao, termo_busca])
+        pubDate = item.find("pubDate").text if item.find("pubDate") is not None else None
+        if pubDate:
+            try:
+                data_noticia = datetime.strptime(pubDate, "%a, %d %b %Y %H:%M:%S %Z")
+            except ValueError:
+                data_noticia = None
+        else:
+            data_noticia = None
+        noticias.append([titulo, link, descricao, termo_busca, data_noticia])
 
     # converte em DataFrame
-    return pd.DataFrame(noticias, columns=["Titulo", "Link", "Descricao", "Termo"])
+    return pd.DataFrame(noticias, columns=["Titulo", "Link", "Descricao", "Termo", "Data"])
 
 if __name__ == "__main__":
     termos = ["Inteligência Artificial Piauí", "SIA Piauí"]
