@@ -65,3 +65,6 @@ python src/processar_noticias.py
 ```bash
 streamlit run src/dashboard.py
 ```
+
+#### Feito por Sammya Letícia 
+[LinkedIn](https://www.linkedin.com/in/sammyavaladao)
