@@ -121,3 +121,34 @@ def distribuicao_de_palavras_em_noticias(df):
 
 st.subheader("Distribuição das Palavras Mais Frequentes")
 distribuicao_de_palavras_em_noticias(df)
+
+# -----------------------------
+# 5. ética e transparência
+# -----------------------------
+st.markdown("---")
+st.subheader("Ética e Transparência")
+
+st.markdown("⚠️ **Aviso sobre a análise de sentimento:** Esta análise é baseada em regras simples e pode não capturar sarcasmo ou contextos complexos.\n")
+
+st.markdown("💡 **Como eu desenvolvi este dashboard:**")
+
+st.markdown("**Etapas 100% realizadas por mim:**")
+st.markdown("""
+- **Coleta de notícias:** Leitura de arquivos CSV e integração de dados coletados.
+- **Limpeza e normalização de textos:** Remoção de tags HTML, caracteres especiais e tratamento de strings.
+- **Definição de palavras-chave para análise de sentimento:** Criação de listas de palavras positivas e negativas.
+- **Classificação de sentimentos:** Implementação da lógica de identificação de sentimentos baseada em regras.
+- **Construção de gráficos e tabelas:**
+  - Gráfico de pizza da distribuição de sentimentos.
+  - Nuvem de palavras com palavras filtradas.
+  - Treemap mostrando palavras mais frequentes em diferentes notícias.
+  - Tabela interativa com todos os dados processados.
+""")
+
+st.markdown("**Uso de IA como suporte:**")
+st.markdown("""
+- Filtragem de stopwords personalizadas: Escolha de palavras irrelevantes para a nuvem de palavras e treemap.
+- Implementação da lógica de contagem de palavras: Quantificação de ocorrência das palavras nas notícias.
+- Organização do layout no Streamlit: Definição de colunas, subheaders e disposição visual dos elementos.
+- Ajustes de espaçamento, alinhamento e proporção de gráficos.
+""")
