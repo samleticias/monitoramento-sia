@@ -10,7 +10,7 @@ caminho_csv = os.path.join(os.path.dirname(__file__), "..", "data", "noticias_pr
 df = pd.read_csv(caminho_csv)
 
 st.set_page_config(page_title="Monitoramento IA no Piauí", layout="wide")
-st.title("📊 Monitoramento de Percepção Pública sobre IA no Piauí")
+st.title("Monitoramento de Percepção Pública sobre IA no Piauí")
 
 # -----------------------------
 # stopwords personalizadas
@@ -39,7 +39,7 @@ cores = {
 col1, col2, col3 = st.columns([1, 2, 1])  
 
 with col2:
-    fig1, ax1 = plt.subplots(figsize=(1.5, 1.5))  
+    fig1, ax1 = plt.subplots(figsize=(1.0, 1.0))  
     ax1.pie(
         sentimentos,
         labels=sentimentos.index,
@@ -78,3 +78,46 @@ st.pyplot(fig2)
 # -----------------------------
 st.subheader("Tabela de Notícias Classificadas")
 st.dataframe(df[["Titulo", "Sentimento", "Link", "Termo", "Texto_Completo"]])
+
+# -----------------------------
+# 4. qtd de vezes que as palavras mais frequentes aparecem
+# -----------------------------
+
+def distribuicao_de_palavras_em_noticias(df):
+    stopwords = {
+        "de", "da", "do", "das", "dos",
+        "a", "o", "as", "os",
+        "em", "no", "na", "nos", "nas",
+        "para", "por", "com", "que",
+        "um", "uma", "uns", "umas",
+        "e", "ou", "se", "ao",
+        "à", "às", "lo", "la", "nosso",
+        "nossa", "seu", "sua", "meu", "minha",
+        "estão", "sobre"
+    }
+
+    lista_palavras = []
+    for texto in df['Texto_Completo'].dropna():
+        palavras = set(texto.lower().split())
+        palavras_filtradas = [p for p in palavras if p not in stopwords and len(p) > 2]
+        lista_palavras.extend(palavras_filtradas)
+
+    # conta em quantas notícias cada palavra aparece
+    palavras_freq = pd.Series(lista_palavras).value_counts().reset_index()
+    palavras_freq.columns = ['Palavra', 'Noticias']
+
+    palavras_freq = palavras_freq.head(50)
+
+    fig = px.treemap(
+        palavras_freq,
+        path=['Palavra'],
+        values='Noticias',
+        color='Noticias',
+        color_continuous_scale='Blues',
+        title="Palavras mais presentes em diferentes notícias"
+    )
+
+    st.plotly_chart(fig, use_container_width=True)
+
+st.subheader("Distribuição das Palavras Mais Frequentes")
+distribuicao_de_palavras_em_noticias(df)
