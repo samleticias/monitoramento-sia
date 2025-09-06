@@ -78,4 +78,3 @@ streamlit run src/dashboard.py
 - Este projeto foi desenvolvido para fins educacionais e de demonstração técnica.  
 
 #### Feito por Sammya Letícia 
-[LinkedIn](https://www.linkedin.com/in/sammyavaladao)
